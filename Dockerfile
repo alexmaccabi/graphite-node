@@ -12,7 +12,8 @@ RUN python3.6 -m pip install wheel
 RUN pip install --upgrade setuptools
 RUN pip install gunicorn
 
-RUN     pip install Twisted==13.2.0
+#RUN     pip install Twisted==13.2.0
+RUN     pip install Twisted==18.7.0
 RUN     pip install pytz
 
 RUN     git clone https://github.com/graphite-project/whisper.git /src/whisper            &&\
