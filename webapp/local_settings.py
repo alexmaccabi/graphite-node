@@ -36,7 +36,7 @@ LOG_RENDERING_PERFORMANCE = True
 #LOG_CACHE_PERFORMANCE = True
 
 # Enable full debug page display on exceptions (Internal Server Error pages)
-#DEBUG = True
+DEBUG = True
 
 # If using RRD files and rrdcached, set to the address or socket of the daemon
 #FLUSHRRDCACHED = 'unix:/var/run/rrdcached.sock'
