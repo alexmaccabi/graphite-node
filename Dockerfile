@@ -9,6 +9,7 @@ RUN apt-get update
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip libcairo2-dev curl git nginx-light supervisor
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
+RUN python3.6 -m pip install redis
 RUN pip install --upgrade setuptools
 RUN pip install gunicorn
 
