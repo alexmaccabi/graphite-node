@@ -326,4 +326,27 @@ DEBUG = True
 # MIDDLEWARE_CLASSES or APPS
 #from graphite.app_settings import *
 
+#####################################
+# TagDB Settings #
+#####################################
+# Tag Database
+#TAGDB = 'graphite.tags.localdatabase.LocalDatabaseTagDB'
+TAGDB='graphite.tags.redis.RedisTagDB'
+TAGDB_REDIS_HOST='graphite-redis'
+# Time to cache seriesByTag results
+#TAGDB_CACHE_DURATION = 60
 
+# Autocomplete default result limit
+#TAGDB_AUTOCOMPLETE_LIMIT = 100
+
+# Settings for Redis TagDB
+#TAGDB_REDIS_HOST = 'localhost'
+#TAGDB_REDIS_PORT = 6379
+#TAGDB_REDIS_DB = 0
+
+# Settings for HTTP TagDB
+#TAGDB_HTTP_URL = ''
+#TAGDB_HTTP_USER = ''
+#TAGDB_HTTP_PASSWORD = ''
+# Does the remote TagDB support autocomplete?
+#TAGDB_HTTP_AUTOCOMPLETE = False
