@@ -331,8 +331,8 @@ DEBUG = True
 #####################################
 # Tag Database
 #TAGDB = 'graphite.tags.localdatabase.LocalDatabaseTagDB'
-TAGDB='graphite.tags.redis.RedisTagDB'
-TAGDB_REDIS_HOST='graphite-redis'
+# TAGDB='graphite.tags.redis.RedisTagDB'
+# TAGDB_REDIS_HOST='graphite-redis'
 # Time to cache seriesByTag results
 #TAGDB_CACHE_DURATION = 60
 
