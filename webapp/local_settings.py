@@ -350,3 +350,5 @@ DEBUG = True
 #TAGDB_HTTP_PASSWORD = ''
 # Does the remote TagDB support autocomplete?
 #TAGDB_HTTP_AUTOCOMPLETE = False
+
+ENABLE_TAGS = False
