@@ -350,5 +350,6 @@ DEBUG = True
 #TAGDB_HTTP_PASSWORD = ''
 # Does the remote TagDB support autocomplete?
 #TAGDB_HTTP_AUTOCOMPLETE = False
-
+#https://github.com/mikewallace1979/docker-graphite-grafana/commit/c81c3840a8fdf2c81fbdc9969b5ff6b782f81f57
+#
 ENABLE_TAGS = False
