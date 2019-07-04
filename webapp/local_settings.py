@@ -249,8 +249,8 @@ DEBUG = True
 #INTRACLUSTER_HTTPS = False
 
 # These are timeout values (in seconds) for requests to remote webapps
-REMOTE_FIND_TIMEOUT = 12.0           # Timeout for metric find requests
-REMOTE_FETCH_TIMEOUT = 12.0          # Timeout to fetch series data
+REMOTE_FIND_TIMEOUT = 21.0           # Timeout for metric find requests
+REMOTE_FETCH_TIMEOUT = 21.0          # Timeout to fetch series data
 REMOTE_RETRY_DELAY = 60.0           # Time before retrying a failed remote webapp
 
 # Try to detect when a cluster server is localhost and don't forward queries
