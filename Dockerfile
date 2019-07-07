@@ -1,12 +1,13 @@
 FROM ubuntu:16.04
 
-RUN apt-get update
-RUN apt-get install -y software-properties-common 
 RUN add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get update
+RUN apt-get install -y software-properties-common 
 
 # Install required packages
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip libcairo2-dev curl git nginx-light supervisor
+
+# Install Python related modules
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
 RUN python3.6 -m pip install redis
@@ -17,6 +18,9 @@ RUN pip install gunicorn
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
+
+# Install redis-server and redis-cli
+RUN apt-get install -y redis-server redis-tools
 
 #RUN     pip install Twisted==13.2.0
 
