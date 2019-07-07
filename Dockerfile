@@ -1,8 +1,9 @@
 FROM ubuntu:16.04
 
-RUN add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get update
+RUN add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get install -y software-properties-common 
+RUN apt-get update
 
 # Install required packages
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip libcairo2-dev curl git nginx-light supervisor
