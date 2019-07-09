@@ -7,6 +7,8 @@ RUN apt-get update
 
 # Install required packages
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip libcairo2-dev curl git nginx-light supervisor
+
+# Install Python related modules
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
 RUN python3.6 -m pip install redis
@@ -18,9 +20,12 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
 
-#RUN     pip install Twisted==13.2.0
+# Install redis-server and redis-cli
+RUN apt-get install -y redis-server redis-tools
 
-RUN     pip install Twisted==18.7.0
+RUN pip install Twisted>=13.2.0
+
+#RUN     pip install Twisted==18.7.0
 RUN     pip install pytz
 
 RUN     git clone https://github.com/graphite-project/whisper.git /src/whisper            &&\
@@ -61,6 +66,8 @@ RUN	touch /opt/graphite/storage/graphite.db /opt/graphite/storage/index
 RUN	chmod 0775 /opt/graphite/storage /opt/graphite/storage/whisper
 RUN	chmod 0664 /opt/graphite/storage/graphite.db
 RUN cp /src/graphite-web/webapp/manage.py /opt/graphite/webapp
+
+RUN cp ./redis/redis.conf /etc/redis/redis.conf
 
 RUN mkdir /kube-watch
 RUN cd /kube-watch && npm install hashring kubernetes-client@5 json-stream
