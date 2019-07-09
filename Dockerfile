@@ -23,9 +23,9 @@ RUN apt-get install -y nodejs
 # Install redis-server and redis-cli
 RUN apt-get install -y redis-server redis-tools
 
-#RUN     pip install Twisted==13.2.0
+RUN pip install Twisted>=13.2.0
 
-RUN     pip install Twisted==18.7.0
+#RUN     pip install Twisted==18.7.0
 RUN     pip install pytz
 
 RUN     git clone https://github.com/graphite-project/whisper.git /src/whisper            &&\
