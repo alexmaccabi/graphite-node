@@ -67,7 +67,7 @@ RUN	chmod 0775 /opt/graphite/storage /opt/graphite/storage/whisper
 RUN	chmod 0664 /opt/graphite/storage/graphite.db
 RUN cp /src/graphite-web/webapp/manage.py /opt/graphite/webapp
 
-RUN cp ./redis/redis.conf /etc/redis/redis.conf
+ADD ./redis/redis.conf /etc/redis/redis.conf
 
 RUN mkdir /kube-watch
 RUN cd /kube-watch && npm install hashring kubernetes-client@5 json-stream
