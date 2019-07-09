@@ -21,6 +21,8 @@ RUN apt-get update
 RUN apt-get install -y nodejs
 
 # Install redis-server and redis-cli
+RUN add-apt-repository -y ppa:chris-lea/redis-server
+RUN apt-get update
 RUN apt-get install -y redis-server redis-tools
 
 RUN pip install Twisted>=13.2.0
