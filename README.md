@@ -1,6 +1,6 @@
 ## Graphite + Carbon
 
-An all-in-one image running graphite and carbon-cache. **Version**: 0.9.12.
+An all-in-one image running graphite and carbon-cache. **Version**: 1.1.5
 
 This image contains a sensible default configuration of graphite and
 carbon-cache. Starting this container will, by default, bind the the following
