@@ -11,7 +11,7 @@
 # install. This key is used for salting of hashes used in auth tokens,
 # CRSF middleware, cookie storage, etc. This should be set identically among
 # instances if used behind a load balancer.
-#SECRET_KEY = 'UNSAFE_DEFAULT'
+SECRET_KEY = 'UNSAFE_DEFAULT'
 
 # In Django 1.5+ set this to the list of hosts your graphite instances is
 # accessible as. See:
@@ -32,11 +32,11 @@
 # Logging
 LOG_ROTATION = True
 LOG_ROTATION_COUNT = 1
-LOG_RENDERING_PERFORMANCE = True
+LOG_RENDERING_PERFORMANCE = False
 #LOG_CACHE_PERFORMANCE = True
 
 # Enable full debug page display on exceptions (Internal Server Error pages)
-DEBUG = True
+DEBUG = False
 
 # If using RRD files and rrdcached, set to the address or socket of the daemon
 #FLUSHRRDCACHED = 'unix:/var/run/rrdcached.sock'
@@ -50,6 +50,7 @@ DEBUG = True
 # You should not use the loopback address (127.0.0.1) here if using clustering
 # as every webapp in the cluster should use the exact same values to prevent
 # unneeded cache misses. Set to [] to disable caching of images and fetched data
+MEMCACHE_HOSTS = [@@MEMCACHE_HOSTS@@]
 #MEMCACHE_HOSTS = ['10.10.10.10:11211', '10.10.10.11:11211', '10.10.10.12:11211']
 
 # Metric data and graphs are cached for one minute by default. If defined,
@@ -57,7 +58,7 @@ DEBUG = True
 # to the cache duration for the results. This allows for larger queries to be
 # cached for longer periods of times. All times are in seconds. If the policy is
 # empty or undefined, all results will be cached for DEFAULT_CACHE_DURATION.
-#DEFAULT_CACHE_DURATION = 60 # Cache images and data for 1 minute
+DEFAULT_CACHE_DURATION = 300 # Cache images and data for 1 minute
 #DEFAULT_CACHE_POLICY = [(0, 60), # default is 60 seconds
 #                        (7200, 120), # >= 2 hour queries are cached 2 minutes
 #                        (21600, 180)] # >= 6 hour queries are cached 3 minutes
@@ -330,19 +331,16 @@ REMOTE_RETRY_DELAY = 60.0           # Time before retrying a failed remote webap
 # TagDB Settings #
 #####################################
 # Tag Database
-#TAGDB = 'graphite.tags.localdatabase.LocalDatabaseTagDB'
-# TAGDB='graphite.tags.redis.RedisTagDB'
-# TAGDB_REDIS_HOST='graphite-redis'
+TAGDB='graphite.tags.redis.RedisTagDB'
 # Time to cache seriesByTag results
-#TAGDB_CACHE_DURATION = 60
-
+TAGDB_CACHE_DURATION = 60
 # Autocomplete default result limit
 #TAGDB_AUTOCOMPLETE_LIMIT = 100
 
 # Settings for Redis TagDB
-#TAGDB_REDIS_HOST = 'localhost'
-#TAGDB_REDIS_PORT = 6379
-#TAGDB_REDIS_DB = 0
+TAGDB_REDIS_HOST = 'localhost'
+TAGDB_REDIS_PORT = 6379
+TAGDB_REDIS_DB = 0
 
 # Settings for HTTP TagDB
 #TAGDB_HTTP_URL = ''
@@ -352,6 +350,6 @@ REMOTE_RETRY_DELAY = 60.0           # Time before retrying a failed remote webap
 #TAGDB_HTTP_AUTOCOMPLETE = False
 #https://github.com/mikewallace1979/docker-graphite-grafana/commit/c81c3840a8fdf2c81fbdc9969b5ff6b782f81f57
 #
-ENABLE_TAGS = False
+#ENABLE_TAGS = False
 #https://github.com/graphite-project/graphite-web/issues/2248
-TAGDB=None
+#TAGDB=None

@@ -7,14 +7,27 @@ RUN apt-get update
 
 # Install required packages
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip libcairo2-dev curl git nginx-light supervisor
+
+# Install Python related modules
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
 RUN python3.6 -m pip install redis
 RUN pip install --upgrade setuptools
 RUN pip install gunicorn
 
-#RUN     pip install Twisted==13.2.0
-RUN     pip install Twisted==18.7.0
+#Install nodejs for kube-watch
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update
+RUN apt-get install -y nodejs
+
+# Install redis-server and redis-cli
+RUN add-apt-repository -y ppa:chris-lea/redis-server
+RUN apt-get update
+RUN apt-get install -y redis-server redis-tools
+
+RUN pip install Twisted>=13.2.0
+
+#RUN     pip install Twisted==18.7.0
 RUN     pip install pytz
 
 RUN     git clone https://github.com/graphite-project/whisper.git /src/whisper            &&\
@@ -45,7 +58,8 @@ ADD	./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add graphite config
 ADD	./webapp/initial_data.json /opt/graphite/webapp/graphite/initial_data.json
-ADD	./webapp/local_settings.py /opt/graphite/webapp/graphite/local_settings.py
+#ADD	./webapp/local_settings.py /opt/graphite/webapp/graphite/local_settings.py
+ADD	./webapp/local_settings.py.template /opt/graphite/webapp/graphite/local_settings.py.template
 ADD	./conf/carbon.conf /opt/graphite/conf/carbon.conf
 ADD	./conf/storage-schemas.conf /opt/graphite/conf/storage-schemas.conf
 ADD	./conf/storage-aggregation.conf /opt/graphite/conf/storage-aggregation.conf
@@ -54,6 +68,12 @@ RUN	touch /opt/graphite/storage/graphite.db /opt/graphite/storage/index
 RUN	chmod 0775 /opt/graphite/storage /opt/graphite/storage/whisper
 RUN	chmod 0664 /opt/graphite/storage/graphite.db
 RUN cp /src/graphite-web/webapp/manage.py /opt/graphite/webapp
+
+ADD ./redis/redis.conf /etc/redis/redis.conf
+
+RUN mkdir /kube-watch
+RUN cd /kube-watch && npm install hashring kubernetes-client@5 json-stream
+ADD kube-watch.js /kube-watch/kube-watch.js
 
 # Install curator cron job
 ADD curator/cron /etc/cron.d/curator.cron
