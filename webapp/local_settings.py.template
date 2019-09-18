@@ -317,7 +317,7 @@ REMOTE_RETRY_DELAY = 60.0           # Time before retrying a failed remote webap
 
 # The replication factor to use with consistent hashing.
 # This should usually match the value configured in Carbon.
-REPLICATION_FACTOR = 2
+REPLICATION_FACTOR = 1
 
 
 #####################################
